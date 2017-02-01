@@ -135,3 +135,46 @@ Total number of trigrams in corpus is 17438.
 
 **Q6**
 Each group is expected to explore two tools (e.g. NLTK and Apache OpenNLP).
+
+
+### Part 2: Few Basic Questions
+
+**Q1**
+How many (most frequent) words are required for 90% coverage of the selected corpus?
+
+2322 unigrams are required to cover 90.0 % of total corpus.
+
+---
+
+**Q2**
+How many (most frequent) bigrams are required for 80% coverage of the corpus?
+
+11068 bigrams are required to cover 80.0 % of total corpus.
+
+---
+
+**Q3**
+
+How many (most frequent) trigrams are required for 70% coverage of the corpus?
+
+11913 trigrams are required to cover 70.0 % of total corpus.
+
+---
+
+**Q4**
+
+Repeat the above after performing lemmatization.
+
+---
+
+**Q5**
+
+Compare the statistics of the two cases, with and without lemmatization.
+
+---
+
+**Q6**
+
+Summarize the results in the report.
+
+---
