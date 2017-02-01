@@ -1,6 +1,7 @@
 import logging
 
-from nltk import (bigrams, trigrams, compat, word_tokenize, FreqDist)
+from nltk import (bigrams, trigrams, compat, word_tokenize, FreqDist,
+                  WordNetLemmatizer)
 from nltk.corpus import gutenberg
 import numpy as np
 from matplotlib import pylab
@@ -46,6 +47,17 @@ def main():
     count_threshold(0.9, uni_freq_dist, "unigrams")
     count_threshold(0.8, bi_freq_dist, "bigrams")
     count_threshold(0.7, tri_freq_dist, "trigrams")
+
+    lemmatized_tokens = lemmatize_tokens(word_list)
+
+    uni_freq_dist = FreqDist(lemmatized_tokens)
+    count_threshold(0.9, uni_freq_dist, 'unigrams')
+
+    bi_freq_dist = FreqDist(list(bigrams(lemmatized_tokens)))
+    count_threshold(0.8, bi_freq_dist, 'bigrams')
+
+    tri_freq_dist = FreqDist(list(trigrams(lemmatized_tokens)))
+    count_threshold(0.7, tri_freq_dist, 'trigrams')
 
 
 def table_20_common(freq_dist, label=''):
@@ -99,6 +111,17 @@ def count_threshold(threshold, freq_dist, label):
     print("{} {} are required to cover {} % of total corpus.".format(
         threshold_grams, label, threshold*100
     ))
+
+
+def lemmatize_tokens(word_list):
+    """
+    Lemmatize a list of tokens using WordNetLemmatizer.
+    :param word_list: list of tokens
+    :return: lemmatized list of tokens
+    """
+    wnl = WordNetLemmatizer()
+    lemmatized_list = [wnl.lemmatize(token) for token in word_list]
+    return lemmatized_list
 
 if __name__ == "__main__":
     main()

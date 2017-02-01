@@ -165,16 +165,43 @@ How many (most frequent) trigrams are required for 70% coverage of the corpus?
 
 Repeat the above after performing lemmatization.
 
+The NLTK Lemmatization method is based on [WordNet](http://wordnet.princeton.edu/)’s built-in morphy function.
+Following are the results of Q.1, Q.2, Q.3 on lemmatized text.
+
+2235 unigrams are required to cover 90.0 % of total corpus.
+11035 bigrams are required to cover 80.0 % of total corpus.
+11911 trigrams are required to cover 70.0 % of total corpus.
+
 ---
 
 **Q5**
 
 Compare the statistics of the two cases, with and without lemmatization.
 
+As expected, after lemmatization less tokens were needed to cover same percentage of corpus as compared to number of tokens required before lemmatization.
+
+This makes sense becuase lemmatization reduces inflectional forms by reducing the word to it's base form.
+
 ---
 
 **Q6**
 
 Summarize the results in the report.
+
+#### Count of n-grams:
+
+| n-gram |count|
+|---|---|
+|unigram|17440|
+|bigram|17439|
+|trigram|17438|
+
+#### Before lemmatization vs After lemmatization:
+
+|n-gram|before lemmatization|after lemmatization|
+|---|---|---|
+|unigram (90% coverage)|2322|2235|
+|bigram (80% coverage)|11068|11035|
+|trigram (70% coverage)|11913|11911|
 
 ---
