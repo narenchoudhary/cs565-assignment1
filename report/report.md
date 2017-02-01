@@ -69,6 +69,7 @@ Find all possible bigrams and calculate their frequencies. Plot the frequency di
 Total number of bigrams in corpus is 17439.
 
 20 most common bigrams in the frequency distribution are:
+
 | bigram  | count |
 |------|-----|
 | ('of', 'the') | 24 |
@@ -103,6 +104,7 @@ Similarly find all trigrams possible and calculate their frequencies. Plot the f
 Total number of trigrams in corpus is 17438.
 
 20 most common trigrams in the frequency distribution are:
+
 | trigram  | count |
 |------|-----|
 | ('Thane', 'of', 'Cawdor') | 13 |
