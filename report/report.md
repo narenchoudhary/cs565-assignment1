@@ -205,3 +205,47 @@ Summarize the results in the report.
 |trigram (70% coverage)|11913|11911|
 
 ---
+
+### Part 3 : Writing some of your basic codes and comparing with results obtained using tools
+
+**Q1**
+
+Repeat section 2 after implementing discussed heuristics in the class for sentence segmenter and
+word tokenizer. If you want to improvise on the discussed heuristics, you can do that but you
+should describe your heuristics in the report. Also summarize your findings by comparing the
+results obtained using your heuristics and tools.
+
+---
+
+**Q2**
+
+Implement Pearson’s Chi-Square Test for finding all bigram (contiguous) collocations in your chosen
+corpus. Do not use libraries. Discuss if you have made any interesting observation.
+
+
+Pearson's Chi-square test returns following 20 collocations as best candidates:  
+
+Knock Knock  
+Exeunt Scena  
+three Witches  
+Scena Secunda  
+ha 's  
+'t is  
+no more  
+at once  
+worthy Thane  
+mine owne  
+my Lord  
+thou art  
+your Highnesse  
+'T is  
+can not  
+Enter Macbeth  
+Giue me  
+good Lord  
+Thane of  
+do 's  
+
+
+---
+

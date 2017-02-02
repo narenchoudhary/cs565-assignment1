@@ -1,10 +1,12 @@
 import logging
 
+from matplotlib import pylab
 from nltk import (bigrams, trigrams, compat, word_tokenize, FreqDist,
                   WordNetLemmatizer)
 from nltk.corpus import gutenberg
 import numpy as np
-from matplotlib import pylab
+
+from pearson_chi_sq import PearsonChiSqTest
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -123,5 +125,25 @@ def lemmatize_tokens(word_list):
     lemmatized_list = [wnl.lemmatize(token) for token in word_list]
     return lemmatized_list
 
+
+def test_pearson():
+    """
+    For all bi-grams, test if the bi-gram is a valid collocation candidate
+    using pearson's chi-square test and print best collocation candidates 4
+    based on chi-square score.
+    :return: None
+    """
+    word_list = word_tokenize(gutenberg.raw(FILE_ID))
+    word_list = [word for word in word_list if len(word) > 1]
+
+    pearson_chi = PearsonChiSqTest(word_list)
+    pearson_chi.filter_frequency(low=5)
+    pearson_chi.calc_scores()
+    pearson_chi.sort_scores()
+    top_cols = pearson_chi.top_collocations()
+    for col in top_cols:
+        print("{} {}  ".format(col[0], col[1]))
+
 if __name__ == "__main__":
     main()
+    test_pearson()
