@@ -1,4 +1,4 @@
-# CS565: Assignment-1
+****# CS565: Assignment-1
 
 ## Basic pre-processing: Segmentation, N-Gram Analysis, Collocation
 
@@ -57,7 +57,7 @@ Total number of unigrams in corpus is 11740.
 
 **Frequency Plot**:  
 
-![frequency plot](plots/plot1_3.png)
+![frequency plot](plots/unigrams.png)
 
 ---
 
@@ -94,7 +94,7 @@ Total number of bigrams in corpus is 17439.
 | ('from', 'the') | 12 |
 
 **Frequency Plot**:
-![frequency plot](plots/plot1_4.png)
+![frequency plot](plots/bigrams.png)
 
 ---
 
@@ -129,7 +129,7 @@ Total number of trigrams in corpus is 17438.
 | ('you', 'haue', 'done') | 3 |
 
 **Frequency Plot**:
-![frequency plot](plots/plot1_5.png)
+![frequency plot](plots/trigrams.png)
 
 ---
 
