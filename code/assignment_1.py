@@ -79,7 +79,7 @@ def freq_plot(len_list, n):
     ngram_label = get_label(n, True)
     ax = pyplot.axes()
     ax.set_xticks(pos + (width / 2))
-    ax.set_xticklabels(len_list)
+    ax.set_xticklabels(pos)
     ax.set_xlabel(ngram_label + " length")
     ax.set_ylabel(ngram_label + " count")
     ax.set_title("Frequency plot of {} by length".format(ngram_label))

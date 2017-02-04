@@ -1,4 +1,4 @@
-****# CS565: Assignment-1
+# CS565: Assignment-1
 
 ## Basic pre-processing: Segmentation, N-Gram Analysis, Collocation
 
@@ -21,6 +21,7 @@ Create a dictionary after detecting words from all sentences.
 
 Total number of words in corpus is 22211.
 Total number of unique words in corpus is 4094.
+
 ---
 
 **Q3**
