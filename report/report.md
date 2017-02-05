@@ -7,25 +7,37 @@
 **Q1** 
 Download any freely available corpus or take any accessible corpus from your chosen tool. Explore available sentence segmenter from the tool and use that for sentence segmentation.
 
-**Tool**: Python3 NLTK library (Version 3.2.2)  
+##### Python3 NLTK library (Version 3.2.2)  
 **Corpus**: Macbeth by Shakespeare (Available in ``gutenberg`` collection of  NLTK library
 **Sentence Segmenter**: NLTK includes implementation of Punkt sentence segmentation [Kiss & Strunk, 2006](http://www.mitpressjournals.org/doi/abs/10.1162/coli.2006.32.4.485#.WJCTQVcnPCI)  
 **Sentence Segmentation**: Total number of sentences in corpus is 1907.
+
+##### Python3 Textacy Library (Version 0.3.2)
+**Corpus**: Macbeth by Shakespeare (Available in ``gutenberg`` collection of  NLTK library.
+**Sentence Segmenter**:  
+**Sentence Segmentation**: Total number of sentences in corpus is 1861.
 
 ---
 
 **Q2**
 Create a dictionary after detecting words from all sentences.
 
+##### Python3 NLTK library (Version 3.2.2)  
 **Assumption**: *word* here means any sequence of one or more characters.
 
 Total number of words in corpus is 22211.
 Total number of unique words in corpus is 4094.
 
+##### Python3 Textacy Library (Version 0.3.2)
+Total number of words present in corpus is 22201.
+Total number of words unique present in corpus is 3092.
+
 ---
 
 **Q3**
 Find all possible unigrams. For each unigram, calculate its frequency in the given corpus. Plot the frequency distribution.
+
+##### Python3 NLTK library (Version 3.2.2) 
 
 **Assumption**: . A single character token (Eg. `,`, `.`, `\`, `:`) is not considered unigram calculation in the answer.
 
@@ -60,11 +72,20 @@ Total number of unigrams in corpus is 11740.
 
 ![frequency plot](plots/unigrams.png)
 
+##### Python3 Textacy Library (Version 0.3.2)
+
+Total number of unigrams in corpus is 22201.
+
+**Frequency Plot**:
+
+![textacy frequency plot](plots/spacy_unigrams.png)
+
 ---
 
 **Q4**
 Find all possible bigrams and calculate their frequencies. Plot the frequency distribution.
 
+##### Python3 NLTK library (Version 3.2.2) 
 **Assumption**: . A single character token (Eg. `,`, `.`, `\`, `:`) is not considered unigram calculation in the answer.
 
 Total number of bigrams in corpus is 17439.
@@ -95,13 +116,23 @@ Total number of bigrams in corpus is 17439.
 | ('from', 'the') | 12 |
 
 **Frequency Plot**:
+
 ![frequency plot](plots/bigrams.png)
+
+##### Python3 Textacy Library (Version 0.3.2)
+
+Total number of bigrams in corpus is 19613.
+
+**Frequency Plot**:
+
+![textacy frequency plot](plots/spacy_bigrams.png)
 
 ---
 
 **Q5**
 Similarly find all trigrams possible and calculate their frequencies. Plot the frequency distribution.
 
+##### Python3 NLTK library (Version 3.2.2) 
 Total number of trigrams in corpus is 17438.
 
 20 most common trigrams in the frequency distribution are:
@@ -130,13 +161,27 @@ Total number of trigrams in corpus is 17438.
 | ('you', 'haue', 'done') | 3 |
 
 **Frequency Plot**:
+
 ![frequency plot](plots/trigrams.png)
+
+##### Python3 Textacy Library (Version 0.3.2)
+
+Total number of trigrams in corpus is 17030.
+
+**Frequency Plot**:
+
+![textacy frequency plot](plots/spacy_trigrams.png)
 
 ---
 
 **Q6**
 Each group is expected to explore two tools (e.g. NLTK and Apache OpenNLP).
 
+Two tools explored are:
+1. Python3 [NLTK library](http://www.nltk.org/) (Version 3.2.2)
+2. Python3 [Textacy Library](https://textacy.readthedocs.io) (Version 0.3.2)
+
+---
 
 ### Part 2: Few Basic Questions
 
@@ -166,8 +211,9 @@ How many (most frequent) trigrams are required for 70% coverage of the corpus?
 
 Repeat the above after performing lemmatization.
 
-The NLTK Lemmatization method is based on [WordNet](http://wordnet.princeton.edu/)’s built-in morphy function.
-Following are the results of Q.1, Q.2, Q.3 on lemmatized text.
+The NLTK Lemmatization method is based on [WordNet](http://wordnet.princeton.edu/)’s built-in morphy function.  
+
+Following are the results of Q.1, Q.2, Q.3 on lemmatized text:
 
 2235 unigrams are required to cover 90.0 % of total corpus.
 11035 bigrams are required to cover 80.0 % of total corpus.
@@ -249,4 +295,3 @@ do 's
 
 
 ---
-
