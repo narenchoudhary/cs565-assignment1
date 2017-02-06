@@ -1,8 +1,8 @@
 import math
 import logging
 
-from matplotlib import pylab, pyplot
-from nltk import (compat, word_tokenize, FreqDist, WordNetLemmatizer, ngrams)
+from matplotlib import pyplot
+from nltk import *
 from nltk.corpus import gutenberg
 import numpy as np
 
@@ -13,12 +13,26 @@ logging.basicConfig(level=logging.DEBUG)
 FILE_ID = 'shakespeare-macbeth.txt'
 
 
-def analyse_sents():
+def analyse_sents(method='default'):
     """
     Analyze sentences present in corpus.
-    :return:
+    Rules for rule based segmentation:
+     - Split at period, colon, semicolon, exclamation and question mark
+     - Do not split at period when it is part of an abbreviation or a decimal
+    :param method: method to be used for segmentation
+    :type method: str
+    :return: None
     """
-    sent_list = gutenberg.sents(FILE_ID)
+    if method == 'default':
+        sent_list = gutenberg.sents(FILE_ID)
+    elif method == 'regex_boundary':
+        raw_text = gutenberg.raw(FILE_ID)
+        pattern = '(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|:|;|,|!)\s'
+        sent_list = tokenize.RegexpTokenizer(pattern).tokenize(raw_text)
+    else:
+        raise TypeError(
+            "Provide a valid method. Choose from  ['default', 'rule_based']"
+        )
     print("Total number of sentences in corpus is {}".format(len(sent_list)))
 
 
@@ -29,13 +43,42 @@ def analyze_words(raw_text):
     :type raw_text: str
     :return:
     """
-    word_list = word_tokenize(raw_text)
+    # word_list = word_tokenize(raw_text) # use built-in word_tokenize utility
+
+    # iterate over sentences to get words
+    sent_list = gutenberg.sents(raw_text)
+    word_list = [word for sent in sent_list for word in sent]
     print("Total number of words in corpus is {}".format(len(word_list)))
     word_dict = set(word_list)
     print("Total number of unique words in corpus is {}".format(len(word_dict)))
 
 
-def get_tokens(raw_text, method='word_tokenize', len_filter=0):
+def ignore_case_tokens():
+    """
+    Generate word list by lowering the words.
+    :return: list of words
+    :rtype: list
+    """
+    sent_list = gutenberg.sents(FILE_ID)
+    word_list = [word.lower() for sent in sent_list for word in sent]
+    return word_list
+
+
+def custom_delimiter_sents():
+    """
+    Segment sentences from text using custom delimiters
+    :return: list of sentences
+    :rtype: list
+    """
+    raw_text = gutenberg.raw(FILE_ID)
+    # delimiters = [".", "?", "!", ";", ":"]
+    delimiters = "[.?!;:]"
+    sent_list = re.split(delimiters, raw_text)
+    print("Total number of sentences in corpus is {}".format(len(sent_list)))
+    return sent_list
+
+
+def get_tokens(raw_text=None, method='word_tokenize', len_filter=0):
     """
     Get tokens from raw text using a specific method.
     :param raw_text: raw text
@@ -48,7 +91,11 @@ def get_tokens(raw_text, method='word_tokenize', len_filter=0):
     """
     token_list = None
     if method == 'word_tokenize':
+        if raw_text is None:
+            raise TypeError("Provide a raw_text to tokeize.")
         token_list = word_tokenize(raw_text)
+    if method == 'ignore_case':
+        token_list = ignore_case_tokens()
     if len_filter > 0:
         token_list = [token for token in token_list if len(token) > len_filter]
     return token_list
@@ -182,6 +229,27 @@ def part_1_2():
     analyze_ngrams(token_list, n=3, threshold=0.7, lemmatize=True, report=True)
 
 
+def part_3():
+    """Driver function for part"""
+    print("Analysis of sentences using new boundary definition:\n")
+    # use regex to define sentence boundary
+    analyse_sents(method='regex_boundary')
+
+    # get token list with all tokens converted to lower case
+    token_list = get_tokens(method='ignore_case', len_filter=1)
+
+    print("Analysis of tokens after converting tokens to lowercase:\n")
+    analyze_ngrams(token_list, n=1, threshold=0.9, report=True)
+    analyze_ngrams(token_list, n=2, threshold=0.8, report=True)
+    analyze_ngrams(token_list, n=3, threshold=0.7, report=True)
+
+    print("Analysis of tokens after converting tokens to lowercase "
+          "and lemmatizing:\n")
+    analyze_ngrams(token_list, n=1, threshold=0.9, lemmatize=True, report=True)
+    analyze_ngrams(token_list, n=2, threshold=0.8, lemmatize=True, report=True)
+    analyze_ngrams(token_list, n=3, threshold=0.7, lemmatize=True, report=True)
+
+
 def test_pearson():
     """
     For all bi-grams, test if the bi-gram is a valid collocation candidate
@@ -201,4 +269,5 @@ def test_pearson():
         print("{} {}  ".format(col[0], col[1]))
 
 if __name__ == "__main__":
-    part_1_2()
+    # part_1_2()
+    part_3()
